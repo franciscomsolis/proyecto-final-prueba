@@ -1,0 +1,9 @@
+<!-- blog/templates/blog/category_list.html -->
+<h1>Categorías</h1>
+<ul>
+    {% for category in categories %}
+        <li><a href="{% url 'category_detail' category.id %}">{{ category.name }}</a></li>
+    {% empty %}
+        <li>No hay categorías disponibles.</li>
+    {% endfor %}
+</ul>
