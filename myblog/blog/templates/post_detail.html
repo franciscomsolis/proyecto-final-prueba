@@ -1,0 +1,21 @@
+<!-- blog/templates/blog/post_detail.html -->
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+<p><strong>Categoria:</strong> {{ post.category.name }}</p>
+<p><strong>Creado el:</strong> {{ post.created_at }}</p>
+
+<h2>Comentarios</h2>
+{% for comment in comments %}
+    <div>
+        <strong>{{ comment.author.username }}</strong> - {{ comment.created_at }}: {{ comment.content }}
+    </div>
+{% empty %}
+    <p>No hay comentarios aún.</p>
+{% endfor %}
+
+<h3>Deja un comentario:</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Enviar</button>
+</form>
